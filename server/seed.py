@@ -22,28 +22,28 @@ def seed():
 
         print("🧥 Seeding pieces...")
         piece1 = Piece(
-            category="Jacket",
-            image_url="https://images.unsplash.com/photo-1618354691249-58742d321d79?auto=format&fit=crop&w=800&q=80",
-            description="Vintage denim jacket",
-            price=4500,
+            category="Coat",
+            image_url="https://images.vestiairecollective.com/images/resized/w=1246,q=75,f=auto,/produit/black-leather-vetements-coat-32662228-2_3.jpg",
+            description="Vetements Coat, leather",
+            price=6000,
             rating=5,
             user_id=user1.id
         )
 
         piece2 = Piece(
             category="Shoes",
-            image_url="https://images.unsplash.com/photo-1596464716121-6cd55fda5f67?auto=format&fit=crop&w=800&q=80",
-            description="White retro sneakers",
-            price=3200,
+            image_url="https://i.ebayimg.com/images/g/jDwAAOSwSAdm1zpY/s-l1200.jpg",
+            description="Rick Owens High Ramones canvas sneakers",
+            price=500,
             rating=4,
             user_id=user2.id
         )
 
         piece3 = Piece(
-            category="T-shirt",
-            image_url="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80",
-            description="Graphic tee",
-            price=1500,
+            category="Muslin shirt",
+            image_url="https://preview.redd.it/started-a-punk-clothing-brand-what-do-we-think-v0-s9fdw2x1cnid1.jpg?width=1080&crop=smart&auto=webp&s=3cd315eb851c1dd132c58be085b69f10c7cc6d11",
+            description="Aurotica Muslin shirt",
+            price=93,
             rating=5,
             user_id=user1.id
         )
