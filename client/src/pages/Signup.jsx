@@ -31,15 +31,15 @@ function Signup() {
         if (!r.ok) throw new Error(data.error || 'Signup failed');
         localStorage.setItem('token', data.access_token);
         navigate('/');
+
+        setUsername('');
+        setEmail('');
+        setPfp('');
+        setPassword('');
+
+        setError('');
       })
       .catch((err) => setError(err.message));
-
-      setUsername('');
-      setEmail('');
-      setPfp('');
-      setPassword('');
-
-      setError('');
   }
 
   return (
