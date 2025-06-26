@@ -1,10 +1,20 @@
 from flask_restful import Resource
-from flask import request
-from flask_jwt_extended import create_access_token, jwt_required, get_jwt
+from flask import request, session
 
 from ..models import db, User
 
 blacklist = set()
+
+class Me(Resource):
+    def get(self):
+        user_id = session.get('user_id')
+
+        if not user_id:
+            return {"error": "Unauthorized"}, 401
+        
+        user = User.query.filter_by(id=user_id).first()
+
+        return {"user": user.to_dict()}, 201
 
 class Register(Resource):
     def post(self):
@@ -30,8 +40,8 @@ class Register(Resource):
         db.session.add(new_user)
         db.session.commit()
 
-        token = create_access_token(identity=str(new_user.id))
-        return {"token": token, "user": new_user.to_dict()}, 201
+        session['user_id'] = new_user.id
+        return {"user": new_user.to_dict()}, 201
 
 
 class Login(Resource):
@@ -45,15 +55,15 @@ class Login(Resource):
         if not user or not user.authenticate(password):
             return {"error": "Invalid username or password."}, 401
 
-        token = create_access_token(identity=str(user.id))
-        return {"token": token, "user": user.to_dict()}, 200
+        session['user_id'] = user.id
+        return {"user": user.to_dict()}, 200
     
-blacklist = set()
-
 class Logout(Resource):
-    @jwt_required()
     def post(self):
-        jti = get_jwt()["jti"]
-        blacklist.add(jti)
-        return {"message": "Successfully logged out."}, 200
+        if 'user_id' not in session:
+            return {"error": "Not logged in."}, 401
+        session.clear()
+        return {"message": "Logged out successfully."}, 200
+
+
 

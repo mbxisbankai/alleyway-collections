@@ -6,7 +6,7 @@ function Home({ pieces }) {
     return (
         <div className="container my-5 text-white">
             <h1>Alleyway Collections</h1>
-            <p>Undiscovered</p>
+            <p>Undiscovered Thrifts</p>
             <h2 className="mb-4" style={{ color: '#8B0000' }}>Latest Finds</h2>
             <div className="row">
                 {pieces.map((piece) => (

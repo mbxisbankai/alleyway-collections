@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Signup() {
+function Signup({ setUser }) {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -29,7 +29,9 @@ function Signup() {
       .then(async (r) => {
         const data = await r.json();
         if (!r.ok) throw new Error(data.error || 'Signup failed');
-        localStorage.setItem('token', data.access_token);
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        setUser(data.user);
         navigate('/');
 
         setUsername('');

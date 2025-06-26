@@ -1,38 +1,38 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-function Login() {
+function Login({ setUser }) {
   const navigate = useNavigate();
-  const [form, setForm] = useState({ email: '', password: '' });
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-    setError('');
-  }
 
   function handleSubmit(e) {
     e.preventDefault();
+    const loginDetails = {
+        username: username,
+        password: password
+    }
 
     fetch("http://127.0.0.1:5555/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(form)
+      body: JSON.stringify(loginDetails)
     })
-      .then((res) => {
-        return res.json().then((data) => {
-          if (!res.ok) throw new Error(data.error || "Login failed");
-          return data;
-        });
-      })
-      .then((data) => {
-        localStorage.setItem("token", data.access_token);
-        navigate("/");
-      })
+      .then(res => res.json)
+      .then(data => { 
+            console.log("Received token:", data.token);
+            localStorage.setItem('token', data.token);
+            localStorage.setItem("user", JSON.stringify(data.user));
+            setUser(data.user);
+            navigate('/');
+        }
+      )
       .catch((err) => setError(err.message));
-  }
+    }
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-black">
@@ -58,8 +58,8 @@ function Login() {
             </label>
             <input
               name="username"
-              value={form.username}
-              onChange={handleChange}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="form-control bg-dark text-white border-secondary"
               placeholder="Enter your username"
               required
@@ -73,8 +73,8 @@ function Login() {
             <input
               name="password"
               type="password"
-              value={form.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="form-control bg-dark text-white border-secondary"
               placeholder="Enter your password"
               required
