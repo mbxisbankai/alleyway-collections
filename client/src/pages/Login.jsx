@@ -7,32 +7,30 @@ function Login({ setUser }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-
   function handleSubmit(e) {
     e.preventDefault();
-    const loginDetails = {
-        username: username,
-        password: password
-    }
 
-    fetch("http://127.0.0.1:5555/login", {
+    const loginDetails = {
+      username,
+      password
+    };
+
+    fetch("http://localhost:5555/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
+      credentials: "include",
       body: JSON.stringify(loginDetails)
     })
-      .then(res => res.json)
-      .then(data => { 
-            console.log("Received token:", data.token);
-            localStorage.setItem('token', data.token);
-            localStorage.setItem("user", JSON.stringify(data.user));
-            setUser(data.user);
-            navigate('/');
-        }
-      )
-      .catch((err) => setError(err.message));
-    }
+      .then(res => res.json())
+      .then(data => {
+        if (data.error) throw new Error(data.error);
+        setUser(data.user);
+        navigate('/');
+      })
+      .catch(err => setError(err.message));
+  }
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-black">
@@ -97,7 +95,6 @@ function Login({ setUser }) {
               </Link>
             </span>
           </div>
-
         </form>
       </div>
     </div>

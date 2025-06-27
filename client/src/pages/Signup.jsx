@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Signup({ setUser }) {
@@ -10,36 +10,28 @@ function Signup({ setUser }) {
   const [error, setError] = useState('');
 
   function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     const newUser = {
-        username: username,
-        email: email,
-        profile_pic: pfp,
-        password: password
-    }
-    
-    fetch('http://127.0.0.1:5555/signup', {
+      username,
+      email,
+      profile_pic: pfp,
+      password
+    };
+
+    fetch('http://localhost:5555/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify(newUser)
     })
       .then(async (r) => {
         const data = await r.json();
         if (!r.ok) throw new Error(data.error || 'Signup failed');
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
         setUser(data.user);
         navigate('/');
-
-        setUsername('');
-        setEmail('');
-        setPfp('');
-        setPassword('');
-
-        setError('');
       })
       .catch((err) => setError(err.message));
   }

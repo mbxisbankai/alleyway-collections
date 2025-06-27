@@ -1,5 +1,6 @@
-from ..extensions import Resource, request, db, jsonify
-from flask_jwt_extended import jwt_required
+from flask_restful import Resource
+from flask import request, session, jsonify
+from ..models import db
 
 class CoreController(Resource):
     def __init__(self, model):
@@ -11,8 +12,10 @@ class CoreController(Resource):
 
         return [item.to_dict() for item in items], 200
     
-    @jwt_required()
     def post(self):
+        if not session.get('user_id'):
+            return {'error': 'Unauthorized'}, 401
+        
         data = request.get_json()
 
         try:
@@ -39,7 +42,6 @@ class CoreControllerOne(Resource):
         item = self.Model.query.filter_by(id=id).first()
         return item.to_dict(), 200
     
-    @jwt_required()
     def patch(self, id):
         item = self.Model.query.filter_by(id=id).first()
 
@@ -54,7 +56,6 @@ class CoreControllerOne(Resource):
 
         return jsonify(item.to_dict()), 200
     
-    @jwt_required()
     def delete(self, id):
         item = self.Model.query.filter_by(id=id).first()
 

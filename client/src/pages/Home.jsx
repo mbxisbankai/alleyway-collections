@@ -1,6 +1,6 @@
 import PieceCard from '../components/PieceCard';
 
-function Home({ pieces }) {
+function Home({ pieces, setRefreshCollection }) {
 
 
     return (
@@ -11,7 +11,7 @@ function Home({ pieces }) {
             <div className="row">
                 {pieces.map((piece) => (
                 <div className="col-md-4 mb-4" key={piece.id}>
-                    <PieceCard piece={piece} />
+                    <PieceCard piece={piece} setRefreshCollection={setRefreshCollection}/>
                 </div>
                 ))}
             </div>
@@ -19,4 +19,4 @@ function Home({ pieces }) {
     )
 }
 
-export default Home
+export default Home;

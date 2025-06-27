@@ -1,7 +1,24 @@
-import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 
 function PieceCard({ piece }) {
+  function handleAddToCollection(pieceId) {
+  fetch("http://localhost:5555/collection", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({ piece_id: pieceId, quantity: 1 })
+  })
+    .then(res => {
+      if (!res.ok) throw new Error("Failed to add to collection");
+      alert("Added to collection!");
+    })
+    .catch(err => {
+      console.error("Add error:", err);
+      alert(err.message);
+    });
+  }
+
+
   return (
     <Card className="bg-dark text-white h-100 border-secondary">
       <Card.Img variant="top" src={piece.image_url} alt={piece.description} />
@@ -11,7 +28,12 @@ function PieceCard({ piece }) {
         <Card.Text>
           <strong>Price:</strong> ${piece.price}
         </Card.Text>
-        <Button variant="outline-danger">Add to Collection</Button>
+        <Button 
+          variant="outline-danger" 
+          onClick={() => handleAddToCollection(piece.id)}
+        >
+          Add to Collection
+        </Button>
       </Card.Body>
     </Card>
   );

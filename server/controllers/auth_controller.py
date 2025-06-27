@@ -1,7 +1,7 @@
 from flask_restful import Resource
-from flask import request, session
+from flask import request, session, make_response
 
-from ..models import db, User
+from ..models import db, User, CollectionItem
 
 blacklist = set()
 
@@ -14,7 +14,32 @@ class Me(Resource):
         
         user = User.query.filter_by(id=user_id).first()
 
-        return {"user": user.to_dict()}, 201
+        return make_response({"user": user.to_dict()}, 201)
+    
+class EditProfile(Resource):
+    def patch(self):
+        print("Session during edit-profile:", dict(session))  
+        user_id = session.get('user_id')
+        if not user_id:
+            return {"error": "Unauthorized"}, 401
+
+        user = User.query.get(user_id)
+        if not user:
+            return {"error": "User not found"}, 404
+
+        data = request.get_json()
+
+        if "username" in data:
+            user.username = data["username"]
+        if "email" in data:
+            user.email = data["email"]
+        if "profile_pic" in data:
+            user.profile_pic = data["profile_pic"]
+        if "password" in data:
+            user.password = data["password"]
+
+        db.session.commit()
+        return make_response({"user": user.to_dict()}, 200)
 
 class Register(Resource):
     def post(self):
@@ -40,8 +65,9 @@ class Register(Resource):
         db.session.add(new_user)
         db.session.commit()
 
+        session.permanent = True
         session['user_id'] = new_user.id
-        return {"user": new_user.to_dict()}, 201
+        return make_response({"user": new_user.to_dict()}, 201)
 
 
 class Login(Resource):
@@ -55,8 +81,13 @@ class Login(Resource):
         if not user or not user.authenticate(password):
             return {"error": "Invalid username or password."}, 401
 
+        session.permanent = True
         session['user_id'] = user.id
-        return {"user": user.to_dict()}, 200
+        session.modified = True 
+
+        print("Session after login:", dict(session))
+        return make_response({"user": user.to_dict()}, 200)
+
     
 class Logout(Resource):
     def post(self):
@@ -64,6 +95,16 @@ class Logout(Resource):
             return {"error": "Not logged in."}, 401
         session.clear()
         return {"message": "Logged out successfully."}, 200
+    
+class UserCollection(Resource):
+    def get(self):
+        user_id = session.get("user_id")
+        print("Session:", dict(session))
+        if not user_id:
+            return {"error": "Unauthorized"}, 401
+
+        collection_items = CollectionItem.query.filter_by(user_id=user_id).all()
+        return make_response([item.to_dict() for item in collection_items], 200)
 
 
 
