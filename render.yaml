@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: alleyway-api
+    env: python
+    region: frankfurt
+    buildCommand: cd server && pipenv install --deploy --ignore-pipfile
+    startCommand: cd server && gunicorn app:app
+    workingDir: server
+    buildFilter:
+      paths:
+        - server/**/*
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: TZ
+        value: Africa/Nairobi
