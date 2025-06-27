@@ -5,7 +5,6 @@ services:
     region: frankfurt
     buildCommand: cd server && pipenv install --deploy --ignore-pipfile
     startCommand: cd server && gunicorn app:app
-    workingDir: server
     buildFilter:
       paths:
         - server/**/*
@@ -20,3 +19,4 @@ services:
         sync: false
       - key: TZ
         value: Africa/Nairobi
+    rootDir: server
