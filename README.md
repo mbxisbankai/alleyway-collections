@@ -51,6 +51,16 @@ cd alleyway-collections
 cd server
 pipenv install && pipenv shell
 flask db upgrade
+```
+Seed the database from the root folder
+
+```bash
+python -m server.seed
+```
+
+Run the app
+```bash
+cd server/
 flask run
 ```
 

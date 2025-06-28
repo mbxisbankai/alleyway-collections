@@ -105,6 +105,7 @@ class UserCollection(Resource):
 
         collection_items = CollectionItem.query.filter_by(user_id=user_id).all()
         return make_response([item.to_dict() for item in collection_items], 200)
+    
 
 
 

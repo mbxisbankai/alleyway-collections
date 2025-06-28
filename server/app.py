@@ -2,7 +2,7 @@ from flask import Flask, jsonify, session
 from flask_restful import Api, Resource
 from flask_session import Session
 from flask_cors import CORS
-from config import Config
+from .config import Config
 from . import models
 from .extensions import db, migrate, bcrypt, server_session
 from .controllers.user_controller import UserController, UserControllerOne
