@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Collection({ user, refreshFlag }) {
   const [collection, setCollection] = useState([]);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:5555/user_collection", {
@@ -29,6 +31,17 @@ function Collection({ user, refreshFlag }) {
         }
       })
       .catch(err => setError(err.message));
+  }
+
+  if (!user) {
+    return (
+      <div className="text-center mt-5">
+        <p className="text-danger">You must be logged in to view your profile.</p>
+        <button className="btn btn-outline-dark" onClick={() => navigate('/login')}>
+          Go to Login
+        </button>
+      </div>
+    );
   }
 
   return (

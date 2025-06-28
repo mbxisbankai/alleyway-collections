@@ -1,4 +1,4 @@
-import { useState, useEffect, Navigate } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import NavBar from './components/NavBar';
@@ -6,7 +6,6 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
-import PieceDetails from './pages/PieceDetails';
 import Collection from './pages/Collection';
 import NotFound from './pages/NotFound';
 import EditProfile from './pages/EditProfile';
@@ -50,11 +49,7 @@ function App() {
           <Route path="/login" element={<Login setUser={setUser}/>} />
           <Route path="/signup" element={<Signup setUser={setUser}/>} />
           <Route path="/profile" element={<Profile user={user} setUser={setUser}/>} />
-          <Route
-            path="/collection"
-            element={user ? <Collection user={user} refreshFlag={refreshCollection}/> : <Navigate to="/login" />}
-          />
-          <Route path="/pieces/:id" element={<PieceDetails />} />
+          <Route path="/collection" element={<Collection user={user} refreshFlag={refreshCollection}/>} />
           <Route path="/edit-profile" element={<EditProfile user={user} setUser={setUser} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
