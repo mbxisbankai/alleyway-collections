@@ -1,7 +1,8 @@
 # Alleyway Collections
 
-Alleyway Collections is a vintage thrift store designed to make thrifting easier.
+Tired of looking through piles of clothes before you see something you like? Alleyway Collections is a vintage thrift store designed to make thrifting easier.
 
+[!Alleyway Collections](/assets/Screenshot%20from%202025-06-28%2012-28-09.png "HomePage")
 ---
 
 ## Features
