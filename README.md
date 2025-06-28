@@ -10,9 +10,8 @@ Tired of looking through piles of clothes before you see something you like? All
 - Session-based authentication (with Flask & Redis)
 - User registration and login
 - Collection system: add and view your saved thrift items
-- Clean eBay-style frontend using React + Bootstrap
 - Modular Flask REST API with scalable structure
-- PostgreSQL (production) & SQLite (development)
+- PostgreSQL (production) 
 
 ---
 
