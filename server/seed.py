@@ -48,7 +48,43 @@ def seed():
             user_id=user1.id
         )
 
-        db.session.add_all([piece1, piece2, piece3])
+        piece4 = Piece(
+            category="Graphic t-shirt",
+            image_url="https://shop.nirvana.com/cdn/shop/files/NIR130080_600x.png?v=1697229513",
+            description="Nirvana t-shirt",
+            price=10,
+            rating=5,
+            user_id=user1.id
+        )
+
+        piece5 = Piece(
+            category="Messenger bag",
+            image_url="https://tombeckbe.com/cdn/shop/files/TomBeckbeMessengerBagSawgrass1.jpg?v=1737054019",
+            description="Waxed canvas messenger bag",
+            price=20,
+            rating=5,
+            user_id=user2.id
+        )
+
+        piece6 = Piece(
+            category="Graphic t-shirt",
+            image_url="https://target.scene7.com/is/image/Target/GUEST_ccb11994-ddb7-41b4-b002-60ef1c0f7632?wid=488&hei=488&fmt=pjpeg",
+            description="Purple rain t-shirt",
+            price=10,
+            rating=4,
+            user_id=user1.id
+        )
+
+        piece7 = Piece(
+            category="Shoes",
+            image_url="https://img01.ztat.net/article/spp-media-p1/2d9be886d6c745e4a63d78eeb629f3af/93305890e2dd43b0b91ad0a511b960e0.jpg?imwidth=1800&filter=packshot",
+            description="Puma Palermo Shoes",
+            price=40,
+            rating=5,
+            user_id=user2.id
+        )
+
+        db.session.add_all([piece1, piece2, piece3, piece4, piece5, piece6, piece7])
         db.session.commit()
 
         print("🛒 Seeding collection items...")

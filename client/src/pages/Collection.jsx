@@ -16,7 +16,7 @@ function Collection({ user, refreshFlag }) {
       })
       .then(data => setCollection(data))
       .catch(err => setError(err.message));
-  }, [refreshFlag]); // re-fetch when this changes
+  }, [refreshFlag]);
 
   function handleRemove(itemId) {
     fetch(`http://localhost:5555/collection/${itemId}`, {
