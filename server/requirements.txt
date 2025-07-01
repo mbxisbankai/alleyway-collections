@@ -27,7 +27,7 @@ pytz
 redis
 setuptools
 six
-SQLAlchemy
+SQLAlchemy<2.1
 sqlalchemy-serializer
 typing_extensions
 Werkzeug
