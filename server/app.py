@@ -3,7 +3,7 @@ from flask_restful import Api, Resource
 from flask_session import Session
 from flask_cors import CORS
 from server.config import Config
-from . import models
+from server import models
 from server.extensions import db, migrate, bcrypt, server_session
 from server.controllers.user_controller import UserController, UserControllerOne
 from server.controllers.piece_controller import PieceController, PieceControllerOne
