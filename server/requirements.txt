@@ -27,7 +27,7 @@ pytz==2025.2
 redis==6.2.0
 setuptools==70.3.0
 six==1.17.0
-SQLAlchemy==2.0.41
+SQLAlchemy==2.0.29         # ← downgraded from 2.0.41 to resolve conflict
 sqlalchemy-serializer==1.4.22
 typing_extensions==4.14.0
 Werkzeug==3.1.3
