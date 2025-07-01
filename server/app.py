@@ -2,13 +2,13 @@ from flask import Flask, jsonify, session
 from flask_restful import Api, Resource
 from flask_session import Session
 from flask_cors import CORS
-from .config import Config
+from server.config import Config
 from . import models
-from .extensions import db, migrate, bcrypt, server_session
-from .controllers.user_controller import UserController, UserControllerOne
-from .controllers.piece_controller import PieceController, PieceControllerOne
-from .controllers.collection_item_controller import CollectionItemController, CollectionItemControllerOne
-from .controllers.auth_controller import Register, Login, Logout, EditProfile, Me, UserCollection
+from server.extensions import db, migrate, bcrypt, server_session
+from server.controllers.user_controller import UserController, UserControllerOne
+from server.controllers.piece_controller import PieceController, PieceControllerOne
+from server.controllers.collection_item_controller import CollectionItemController, CollectionItemControllerOne
+from server.controllers.auth_controller import Register, Login, Logout, EditProfile, Me, UserCollection
 
 def create_app():
     app = Flask(__name__)
