@@ -15,7 +15,7 @@ function Login({ setUser }) {
       password
     };
 
-    fetch("http://localhost:5555/login", {
+    fetch("https://alleyway-collections.onrender.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

@@ -20,7 +20,7 @@ function EditProfile({ user, setUser }) {
             password: password
         }
 
-        fetch(`http://localhost:5555/edit-profile`, {
+        fetch(`https://alleyway-collections.onrender.com/edit-profile`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedUser),

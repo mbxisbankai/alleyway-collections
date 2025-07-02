@@ -4,7 +4,7 @@ function Profile({ user, setUser }) {
   const navigate = useNavigate();
 
   function handleLogout() {
-    fetch("http://localhost:5555/logout", {
+    fetch("https://alleyway-collections.onrender.com/logout", {
       method: "POST",
       credentials: "include"
     })

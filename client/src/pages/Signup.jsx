@@ -19,7 +19,7 @@ function Signup({ setUser }) {
       password
     };
 
-    fetch('http://localhost:5555/signup', {
+    fetch('https://alleyway-collections.onrender.com/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
