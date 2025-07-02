@@ -10,11 +10,12 @@ class Config:
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    SESSION_TYPE = "redis"
+    # SESSION_TYPE = "redis"
+    SESSION_TYPE = "filesystem"
     SESSION_PERMANENT = True
     PERMANENT_SESSION_LIFETIME = timedelta(days=1)
     SESSION_USE_SIGNER = True
-    SESSION_REDIS = redis.from_url(os.getenv("REDIS_URL"))
+    # SESSION_REDIS = redis.from_url(os.getenv("REDIS_URL"))
     SESSION_COOKIE_NAME = "alleyway_session"
     SESSION_KEY_PREFIX = "alleyway_session:"
     SESSION_COOKIE_HTTPONLY = True
