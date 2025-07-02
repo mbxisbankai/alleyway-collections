@@ -8,7 +8,7 @@ from server.extensions import db, migrate, bcrypt, server_session
 from server.controllers.user_controller import UserController, UserControllerOne
 from server.controllers.piece_controller import PieceController, PieceControllerOne
 from server.controllers.collection_item_controller import CollectionItemController, CollectionItemControllerOne
-from controllers.auth_controller import Register, Login, Logout, EditProfile, Me, UserCollection
+from .controllers.auth_controller import Register, Login, Logout, EditProfile, Me, UserCollection
 
 def create_app():
     app = Flask(__name__)
