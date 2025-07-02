@@ -20,7 +20,7 @@ def create_app():
     server_session.init_app(app)
 
     api = Api(app)
-    CORS(app, supports_credentials=True, origins=["https://aw-collections.onrender.com", "https://alleyway-collections.onrender.com"])
+    CORS(app, supports_credentials=True, origins=["https://aw-collections.onrender.com"])
 
     #Authentication Part
     api.add_resource(Register, '/signup')
