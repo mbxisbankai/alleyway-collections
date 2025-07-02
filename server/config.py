@@ -15,7 +15,7 @@ class Config:
     SESSION_PERMANENT = True
     PERMANENT_SESSION_LIFETIME = timedelta(days=1) 
     SESSION_USE_SIGNER = True
-    SESSION_REDIS = redis.from_url("redis://127.0.0.1:6379")
+    SESSION_REDIS = redis.from_url(os.getenv("REDIS_URL"))
     SESSION_COOKIE_NAME = "alleyway_session"
     SESSION_COOKIE_SAMESITE = "None"    
     SESSION_COOKIE_SECURE = True  
