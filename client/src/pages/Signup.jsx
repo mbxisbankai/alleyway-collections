@@ -19,7 +19,7 @@ function Signup({ setUser }) {
       password
     };
 
-    fetch(`${process.env.REACT_APP_API_URL}/signup`, {
+    fetch(`https://alleyway-collections.onrender.com/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -20,7 +20,7 @@ function EditProfile({ user, setUser }) {
             password: password
         }
 
-        fetch(`${process.env.REACT_APP_API_URL}/edit-profile`, {
+        fetch(`https://alleyway-collections.onrender.com/edit-profile`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedUser),

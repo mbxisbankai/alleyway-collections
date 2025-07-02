@@ -4,7 +4,7 @@ function Profile({ user, setUser }) {
   const navigate = useNavigate();
 
   function handleLogout() {
-    fetch(`${process.env.REACT_APP_API_URL}/logout`, {
+    fetch(`https://alleyway-collections.onrender.com/logout`, {
       method: "POST",
       credentials: "include"
     })
