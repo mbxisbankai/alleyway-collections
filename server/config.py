@@ -11,7 +11,6 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     SESSION_TYPE = "redis"
-    # SESSION_TYPE = "filesystem"
     SESSION_PERMANENT = True
     PERMANENT_SESSION_LIFETIME = timedelta(days=1)
     SESSION_USE_SIGNER = True
