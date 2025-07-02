@@ -16,14 +16,14 @@ function App() {
   const [refreshCollection, setRefreshCollection] = useState(0);
 
   useEffect(() => {
-    fetch("https://alleyway-collections.onrender.com/pieces")
+    fetch(`${process.env.REACT_APP_API_URL}/pieces`)
       .then((r) => r.json())
       .then((data) => setPieces(data))
       .catch((err) => console.error("Error fetching pieces:", err));
   }, []);
 
   useEffect(() => {
-  fetch("https://alleyway-collections.onrender.com/@me", {
+  fetch(`${process.env.REACT_APP_API_URL}/@me`, {
     method: "GET",
     credentials: "include",
   })

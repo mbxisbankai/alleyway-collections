@@ -2,7 +2,7 @@ import { Card, Button } from 'react-bootstrap';
 
 function PieceCard({ piece }) {
   function handleAddToCollection(pieceId) {
-  fetch("https://alleyway-collections.onrender.com/collection", {
+  fetch(`${process.env.REACT_APP_API_URL}/collection`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include",

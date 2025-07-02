@@ -7,7 +7,7 @@ function Collection({ user, refreshFlag }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://alleyway-collections.onrender.com/user_collection", {
+    fetch(`${process.env.REACT_APP_API_URL}/user_collection`, {
       credentials: "include"
     })
       .then(res => {
@@ -19,7 +19,7 @@ function Collection({ user, refreshFlag }) {
   }, [refreshFlag]);
 
   function handleRemove(itemId) {
-    fetch(`https://alleyway-collections.onrender.com/collection/${itemId}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/collection/${itemId}`, {
       method: "DELETE",
       credentials: "include"
     })
